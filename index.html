@@ -1,11 +1,943 @@
+﻿
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <p>Hello world</p>
-    <hr>
-  </head>
-</html>>
+<head>
+<meta charset="utf-8">
+<script id="allmobilize" charset="utf-8" src="http://a.yunshipei.com/3cf4bf099041a90552a48c9d178339b6/allmobilize.min.js"></script>
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate" media="handheld" href="#" />
+
+<link rel="shortcut icon" href="/images/favourite.ico">
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="/css/index.css">
+<link rel="stylesheet" type="text/css" href="/js/nav/nav.css">
+<link rel="stylesheet" type="text/css" href="/js/player/css/player.css" />
+<link rel="stylesheet" type="text/css" href="/js/pClock/css/roller.css" />
+<link rel="stylesheet" type="text/css" href="/js/tips/css/tips.css" />
+<link rel="stylesheet" type="text/css" href="/css/tab.css" />
+<link rel="stylesheet" type="text/css" href="/js/calendar/css/calendar.css" />
+<title>国家数据</title>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/modulejs/dynamic.jsp;jsessionid=A6C3F91B7E14EB44C5947045F005E474"></script>
+<script type="text/javascript" src="/js/nav/nav.js"></script>
+<script type="text/javascript" src="/js/player/js/player.js"></script>
+<script type="text/javascript" src="/js/pClock/js/roller.js"></script>
+<script type="text/javascript" src="/js/pClock/js/pClock.js"></script>
+<script type="text/javascript" src="/js/calendar/js/calendar.js"></script>
+<script type="text/javascript" src="/js/tips/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="/js/ckplayer/ckplayer.js"></script>
+<script type="text/javascript">
+$(function() {
+	//三经普flash
+	setTimeout(function(){
+		$(".sanjingpuflash").animate({"height":0},1500);
+	},18000);
+	
+	//视频
+	var flvDiv='<div class="videoBox" style="width:1024px;height:576px;"><div id="a1" style="width:1024px;height:576px;"></div></div>';
+	$(document).on("click",".getDataVideo",function(){					
+		$.tips({
+				title : '如何获取统计数据',
+				content :flvDiv,
+				width : 1034,
+				height : 586,
+				drag : true,
+				isCopy : false
+		});
+		
+		var flashvars={ f:'/js/ckplayer/20141219.flv',p:1	};
+		var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always'};
+		var video=['/js/ckplayer/20141219.mp4->video/mp4'];
+		CKobject.embed('/js/ckplayer/ckplayer.swf','a1','ckplayer_a1','1024','576',true,flashvars,video,params);
+	});
+	
+	/*快速查询tab*/
+	$("#tags li").click(function(){
+		$(this).addClass("selectTag").siblings().removeClass("selectTag");
+		$(".tagContent").eq($(this).index()).addClass("selectTag").siblings().removeClass("selectTag");
+	});
+	
+	//焦点图
+ 	var focusData=[{"context":"<p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190618_1670960.html' target='_blank' >2019年5月份70个大中城市商品住宅销售价格变动情况</a></p><br/><p style=' text-indent:0em;'><br/>看更多可视化数据</p><p style=' text-indent:0em;'><a href='/swf.htm?m=turnto&id=436' >变动情况</a>&nbsp;&nbsp;<a href='/swf.htm?m=turnto&id=437' >变动地图</a></p>","ctitle":"最新发布（6月18日）","href":"http://www.stats.gov.cn/tjsj/zxfb/201906/t20190618_1670960.html","piccode":"focus_1560842688782"},{"context":"<p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670192.html' target='_blank' >据对24个省（区、市）流通领域9大类50种重要生产资料市场价格的监测显示，2019年6月上旬与5月下旬相比，10种产品价格上涨，36种下降，4种持平。</a></p><br/>看更多可视化数据</a></p><p style=' text-indent:0em;'><a href='/swf.htm?m=turnto&id=431' >生产资料</a></p>","ctitle":"最新发布（6月14日）","href":"http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670192.html","piccode":"focus_1560654145560"},{"context":"<p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670362.html' target='_blank' >5月份国民经济继续运行在合理区间</a></p>","ctitle":"最新发布（6月14日）","href":"http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670362.html","piccode":"focus_1560654113844"},{"context":"<p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670363.html' target='_blank' >2019年5月份，规模以上工业增加值同比实际增长5.0%，比4月份回落0.4个百分点。</a></p><br/><p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670366.html' target='_blank' >2019年5月份，社会消费品零售总额32956亿元，同比名义增长8.6%。</a></p><br/><p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670367.html' target='_blank' >5月份，规模以上工业原煤、原油和天然气生产加快，电力生产放缓。</a></p>","ctitle":"最新发布（6月14日）","href":"http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670363.html","piccode":"focus_1560654062147"},{"context":"<p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670364.html' target='_blank' >2019年1—5月份，全国固定资产投资（不含农户）217555亿元，同比增长5.6%，增速比1—4月份回落0.5个百分点。</a></p><p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670365.html' target='_blank' >2019年1—5月份，全国房地产开发投资46075亿元，同比增长11.2%，增速比1—4月份回落0.7个百分点。</a></p>","ctitle":"最新发布（6月14日）","href":"http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670364.html","piccode":"focus_1560654029012"},{"context":"<p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190612_1669734.html' target='_blank' >2019年5月份居民消费价格同比上涨2.7%<a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190612_1669735.html' target='_blank' >2019年5月份工业生产者出厂价格同比上涨0.6%</a></p><br/><p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/sjjd/201906/t20190612_1669738.html' target='_blank' >2019年5月份CPI同比涨幅有所扩大，PPI略有回落——国家统计局城市司处长董雅秀解读2019年5月份CPI和PPI数据</a></p><br/>看更多可视化数据</p><p style=' text-indent:0em;'><a href='/swf.htm?m=turnto&id=427' >CPI</a>&nbsp;&nbsp;<a href='/swf.htm?m=turnto&id=428' >PPI</a></p>","ctitle":"最新发布（6月12日）","href":"http://www.stats.gov.cn/tjsj/sjjd/201906/t20190612_1669738.html","piccode":"focus_1560395275109"},{"context":"<p style=' text-indent:0em;'><a href='http://www.stats.gov.cn/tjsj/zxfb/201906/t20190604_1668593.html' target='_blank' >据对24个省（区、市）流通领域9大类50种重要生产资料市场价格的监测显示，2019年5月下旬与5月中旬相比，15种产品价格上涨，29种下降，6种持平。</a></p><br/>看更多可视化数据</a></p><p style=' text-indent:0em;'><a href='/swf.htm?m=turnto&id=431' >生产资料</a></p>","ctitle":"最新发布（6月4日）","href":"http://www.stats.gov.cn/tjsj/zxfb/201906/t20190604_1668593.html","piccode":"focus_1559632738020"},{"context":"<p>为了更好地满足社会公众随时随地对数据查询的需求，我们升级了数据中国 App 客户端，旧版“数据中国”将停止维护使用，欢迎大家体验手机端数据库，并提宝贵意见。</p>“掌上数据库”客户端依然使用<br/>扫描下载<br/>数据中国pro（<a class=\"sjzgcn\" href=\"javascript:;\">中文</a>        <a class=\"sjzgen\" href=\"javascript:;\">英文</a>）<br/><a class=\"zssjk\" href=\"javascript:;\">掌上数据库</a></p>(安卓版用微信以外的扫描工具)</a>","ctitle":"“数据中国”再升级","href":"https://itunes.apple.com/cn/app/shu-ju-zhong-guopro/id1178551138?mt=8","piccode":"focus_1479797534057"},{"context":"</p>掌上数据库是一款手机客户端产品，与国家统计数据库完全对接，使用方便，信息量大，可随时随地在手机上查询统计数据和图表。</p><br/>下载地址</p><p style=' text-indent:0em;'><a class=\"zssjk\" href=\"javascript:;\">苹果App</a>","ctitle":"“掌上数据库”上线","href":"https://itunes.apple.com/cn/app/zhang-shang-shu-ju-ku-nbs/id912308823?mt=8","piccode":"focus_1434108612338"},{"context":"</p>9月19日，新版国家统计局数据库（英文版）正式上线运行，欢迎国内外用户使用。</p>","ctitle":"国家统计局数据库(英文版)升级上线","href":"http://data.stats.gov.cn/english","piccode":"focus_1434108622871"},{"context":"<p>经济学家曾这样预言：“新时代最重要的趋势是将世界上的信息组织起来，让每个角落的人都能够找到最有价值的信息。” 为此，国家统计局创新升级了“涵盖内容更加全面、使用体验更加快捷”的新版数据库，这就是“国家统计数据库”。</p><p>公开透明，信息共享。</p><p>我们一直在努力……</p>","ctitle":"为用户提供更好的服务","href":"ifnormal.htm?u=/lastestpub/video.html&h=700","piccode":"focus_1434108702339"},{"context":"<p>为加快建设现代化服务型统计，更好地服务社会，国家统计局新版统计数据库正式上线。在这里，您可以随心所欲的查询国家数据。</p><p>目前数据库还在试运行，还有不完善的地方。如果您在使用过程中发现问题，及时向我们反馈，我们将随时更正。相信在我们共同的努力下，数据库会越来越完善。</p><p>真诚的希望它能给您事业助一臂之力！！</p>","ctitle":"国家统计数据库全新改版","href":"staticreq.htm?m=aboutctryinfo","piccode":"focus_1434108718038"},{"context":"<p>在这个信息爆炸的时代，借助图形化的手段，高效和清晰地交流信息是数据可视化的目的所在。作为一种信息载体，她拥有对数据的多种表现形式，是美丽的且带有趣味性的，是理性与感性、“美”与“用”结合的艺术品。</p>","ctitle":"轻触，数据美丽的外衣","href":"vchart.htm","piccode":"focus_1434108735840"},{"context":"</p>- 第一时间发布权威统计信息，及时解答广大微粉的提问，开启温暖心灵的统计之旅。</p>","ctitle":"“统计微讯”，沟通零距离","href":"http://www.stats.gov.cn/tjfw/tjyd/","piccode":"focus_1434108198848"},{"context":"<p>如何在纷繁浩瀚的数海中找到你需要的那一个？下面，就让我们一起来阅读国家统计局数据库入门指南，让这篇用户手册来指引你如何使用数据库。跟着导航一起操作，即可进入轻松的查数之旅。</p>","ctitle":"让数据生活更简单","href":"ifnormal.htm?m=help&u=/files/html/help/help.html&h=690","piccode":"focus_1434108782572"}];
+	focus(focusData);
+
+	//发布日程
+	var dateData=[[{"maxTime":"2019","minTime":"2013","serverTime":"2019-06-19"}],[],[],[{"ctitle":"社会消费品零售总额月度报告","ym":"2019-06-14 15:00:00"},{"ctitle":"中国采购经理指数月度报告（中国制造业采购经理指数、非制造业商务活动指数和综合PMI产出指数月度报告）","ym":"2019-06-30 09:00:00"},{"ctitle":"流通领域重要生产资料市场价格数据","ym":"2019-06-04 09:30:00"},{"ctitle":"流通领域重要生产资料市场价格数据","ym":"2019-06-14 09:30:00"},{"ctitle":"流通领域重要生产资料市场价格数据","ym":"2019-06-24 09:30:00"},{"ctitle":"70个大中城市住宅销售价格月度报告","ym":"2019-06-18 09:30:00"},{"ctitle":"房地产开发和销售情况月度报告","ym":"2019-06-14 15:00:00"},{"ctitle":"工业经济效益月度报告","ym":"2019-06-27 09:30:00"},{"ctitle":"工业生产者价格指数月度报告","ym":"2019-06-12 09:30:00"},{"ctitle":"固定资产投资（不含农户）月度报告","ym":"2019-06-14 15:00:00"},{"ctitle":"规模以上工业生产月度报告","ym":"2019-06-14 15:00:00"},{"ctitle":"国民经济运行情况新闻发布会","ym":"2019-06-14 15:00:00"},{"ctitle":"居民消费价格指数月度报告","ym":"2019-06-12 09:30:00"},{"ctitle":"能源生产情况月度报告","ym":"2019-06-14 15:00:00"}]];
+	time(dateData);
+	
+	//数据更新
+	var lastUpdateData=[{"ctitle":"2019年5月份70个大中城市商品住宅销售价格变动情况","href":"http://www.stats.gov.cn/tjsj/zxfb/201906/t20190618_1670960.html","id":0,"lanmu":"焦点图","updatetime":"2019-06-18 09:30:00"},{"ctitle":"2019年1—5月份全国固定资产投资（不含农户）增长5.6%","href":"http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670364.html","id":0,"lanmu":"焦点图","updatetime":"2019-06-14 10:00:00"},{"ctitle":"5月份国民经济继续运行在合理区间","href":"http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670362.html","id":0,"lanmu":"焦点图","updatetime":"2019-06-14 10:00:00"},{"ctitle":"2019年5月份规模以上工业增加值增长5.0%","href":"http://www.stats.gov.cn/tjsj/zxfb/201906/t20190614_1670363.html","id":0,"lanmu":"焦点图","updatetime":"2019-06-14 10:00:00"},{"ctitle":"流通领域重要生产资料市场价格变动情况（2019年3月1-10日）","href":"http://www.stats.gov.cn/tjsj/zxfb/201903/t20190314_1653766.html","id":0,"lanmu":"焦点图","updatetime":"2019-03-14 10:00:00"}];
+	addUpdateData(lastUpdateData);
+	
+	//可视化图表
+	var topVchartData=[{"ctitle":"大中城市住宅销售价格","href":"swf.htm?m=turnto&id=437","id":156,"picfile":"topvchart_ks02","webvchartid":0},{"ctitle":"大中城市主要食品平均价格","href":"swf.htm?m=turnto&id=438","id":162,"picfile":"topvchart_ks07","webvchartid":0},{"ctitle":"中国城镇化进程","href":"swf.htm?m=turnto&id=432","id":166,"picfile":"topvchart_ks03","webvchartid":0},{"ctitle":"中国制造业采购","href":"swf.htm?m=turnto&id=433","id":167,"picfile":"topvchart_ks04","webvchartid":0},{"ctitle":"大中城市房价","href":"swf.htm?m=turnto&id=436","id":170,"picfile":"topvchart_ks05","webvchartid":0},{"ctitle":"大中城市住宅销售价格","href":"swf.htm?m=turnto&id=436","id":171,"picfile":"topvchart_ks08","webvchartid":0},{"ctitle":"中国区域经济情况","href":"swf.htm?m=turnto&id=435","id":172,"picfile":"topvchart_ks06","webvchartid":0},{"ctitle":"房地产投资","href":"/swf.htm?m=turnto&id=425","id":200,"picfile":"topvchart_1439782848368","webvchartid":0}];
+	addChart(topVchartData);
+	
+	//人口钟
+	var pClockData=[{"addcount":0.2335,"cexp":"人口钟的人口变动是根据当前人口自然增长率测算的，每分钟约增加14.01人，每年会根据最新数据进行调整。 ","updatetime":1560950921498}];
+	clock(pClockData);
+	
+	//统计数据产品
+	//中国统计
+	//$(".zgtj").click(function(){
+		/*
+		var zgtjHTML = '<ul class="appBox">' +
+							'<li><a class="appBtn ios" target="_blank" href="https://itunes.apple.com/cn/app/zhong-guo-tong-ji/id462165443?mt=8"></a><p>二维码下载：</p><img src="/images/code/zgtj_ios.jpg" /></li>'+
+							'<li><a class="appBtn apk1" href="/lastestpub/apk/stats_a_phone_1.3.apk"></a><p>二维码下载：</p><img src="/images/code/zgtj_apk_phone.jpg" /></li>' +
+							'<li><a class="appBtn apk2" href="/lastestpub/apk/stats_a_pad_1.3.apk"></a><p>二维码下载：</p><img src="/images/code/zgtj_apk_pad.jpg" /></li>' +
+						'</ul>';
+		*/
+	//	var zgtjHTML = '<ul class="appBox">' +
+	//						'<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img height="285" width="200" src="/images/erweimayd.png" /></li>'+
+	//					'</ul>';
+	//	$.tips({
+	//			title : '中国统计',
+	//			content :zgtjHTML,
+	//			width : 265,
+	//			height : 345,
+	//			drag : true,
+	//			isCopy : false
+	//	});
+	//});
+
+	//数据中国
+	$(".sjzgcn").click(function(){
+		var sjzgcnHTML = '<ul class="appBox">' +
+							'<li><a class="appBtn ios1" target="_blank" href="https://itunes.apple.com/cn/app/shu-ju-zhong-guopro/id1178551138?mt=8"></a><p>二维码下载：</p><img src="/images/code/sjzg_ios_phone.jpg" /></li>'+
+							'<li><a class="appBtn apk" href="/lastestpub/apk/sjzg_cn.apk"></a><p>二维码下载：</p><img src="/images/code/sjzg_apk_cn.jpg" /></li>' +
+						'</ul>';
+		$.tips({
+				title : '数据中国pro中文版',
+				content :sjzgcnHTML,
+				width : 342,
+				height : 260,
+				drag : true,
+				isCopy : false
+		});
+	});
+	$(".sjzgen").click(function(){
+		var sjzgenHTML = '<ul class="appBox">' +
+							'<li><a class="appBtn ios1" target="_blank" href="https://itunes.apple.com/cn/app/shu-ju-zhong-guopro/id1178551138?mt=8"></a><p>二维码下载：</p><img src="/images/code/sjzg_ios_en.jpg" /></li>'+
+							'<li><a class="appBtn apk" href="/lastestpub/apk/sjzg_en.apk"></a><p>二维码下载：</p><img src="/images/code/sjzg_apk_en.jpg" /></li>' +
+						'</ul>';
+		$.tips({
+				title : '数据中国pro英文版',
+				content :sjzgenHTML,
+				width : 342,
+				height : 260,
+				drag : true,
+				isCopy : false
+		});
+	});    
+	//掌上数据库
+	$(".zssjk").click(function(){
+		var zssjkHTML = '<ul class="appBox">' +
+							'<li><a class="appBtn ios1" target="_blank" href="https://itunes.apple.com/cn/app/zhang-shang-shu-ju-ku-nbs/id912308823?mt=8"></a><p>二维码下载：</p><img src="/images/code/zssjk_ios.jpg" /></li>'+
+							'<li><a class="appBtn apk" href="/lastestpub/apk/hand_data_a.apk"></a><p>二维码下载：</p><img src="/images/code/zssjk_apk.jpg" /></li>' +
+						'</ul>';
+		$.tips({
+				title : '掌上数据库',
+				content :zssjkHTML,
+				width : 342,
+				height : 260,
+				drag : true,
+				isCopy : false
+		});
+	});
+	//搜数
+	$(".ss").click(function(){
+		var ssHTML = '<ul class="appBox">' +
+							'<li><a class="appBtn ios1" target="_blank" href="https://itunes.apple.com/cn/app/sou-shu/id899035458?mt=8"></a><p>二维码下载：</p><img src="/images/code/ss_ios.jpg" /></li>'+
+						'</ul>';
+		$.tips({
+				title : '搜数',
+				content :ssHTML,
+				width : 176,
+				height : 260,
+				drag : true,
+				isCopy : false
+		});
+	});
+	
+});
+
+//焦点图
+function focus(data){
+	$.each(data,function(i){
+		data[i].piccode=""+"/files/pics/focus/"+data[i].piccode+".jpg";
+		// 焦点图说明取第一个句号的所有文字进行展示
+		var context = data[i].context;
+	});
+	
+	$("#pps").player(data, {timer : true});
+}
+
+//人口钟
+function clock(data){
+	$(".pClock").attr('detail',data[0].cexp);
+	roll(data[0].addcount);
+	getScale(data[0].addcount);
+};
+
+//数据更新
+function addUpdateData(d){
+	$.each(d,function(i){
+		var html='<li><a title="'+d[i].ctitle+'<br>('+d[i].lanmu+')" href="'+d[i].href+'" target=_blank>' +
+					d[i].ctitle+'<br>('+d[i].lanmu+')<span>('+d[i].updatetime+')</span>'+
+			'</a></li>';
+		$(".updateList ul").append(html);
+	});
+}
+
+//可视化图表
+function addChart(d){
+	$.each(d,function(i){
+		d[i].picfile=""+"/files/pics/topvchart/"+d[i].picfile+".jpg";
+		var className = 'chartL';
+		(i%4 == 3) && (className = 'chartR');
+		var id=d[i].webvchartid;
+		var html = '<div class="' + className + '">'+
+			'<a href="' + d[i].href+'">'+
+				'<img src="' + d[i].picfile + '" width="154" height="55" border="0" /><span style="margin-top:3px">' +
+				d[i].ctitle +
+			'</span></a>'+
+		'</div>';
+		$(".chartBox").append(html);
+	});
+}
+</script>
+</head>
+<body>
 
 
 
+
+<!-- 2015/1/12 13:17 -->
+
+
+
+
+
+
+
+
+
+<div class="tc experience">为了获得更好的用户体验，请使用火狐、谷歌、360浏览器极速模式或IE9及以上版本的浏览器。<em class="close"></em></div>
+
+<!--页眉-->
+<div id="top">
+	
+    <div class="top-wrap">
+        <div class="t-right mr5">
+            <ul>
+            	
+                <li><a href="/login.htm">登录</a></li>
+				<li class="line"></li>
+                <li><a href="/login.htm?m=toRegister">注册</a></li>
+                
+				<li class="line"></li>
+				<li><a href="/english">English</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="header">
+    <h1>国家数据</h1>
+    
+	<!--nav start-->
+	<div id="nav">
+		<ul>
+			<li><a href="/index.htm"><span class="first">首页</span></a></li>
+			<li><a href='/easyquery.htm?cn=A01' >月度数据</a></li>
+
+<li><a href='/easyquery.htm?cn=B01' >季度数据</a></li>
+
+<li><a href='/easyquery.htm?cn=C01' >年度数据</a></li>
+
+<li><a href='http://www.stats.gov.cn/tjsj/pcsj/'  target='_blank'>普查数据</a></li>
+
+<li><a rel='menuE01'>地区数据</a></li>
+
+<li><a href='/staticreq.htm' >部门数据</a></li>
+
+<li><a rel='menuG01'>国际数据</a></li>
+
+<li><a href='/vchart.htm' >可视化产品</a></li>
+
+<li><a href='/publish.htm?sort=1' >出版物</a></li>
+
+<li><a href='/favorite.htm' >我的收藏</a></li>
+
+<li class='last'><a href='/ifnormal.htm?m=help&u=/files/html/help/help.html&h=690' >帮助</a></li>
+
+
+		</ul>
+	</div>
+	<ul class='hidden' id='menuE01'><li><a  href='/easyquery.htm?cn=E0101' >分省月度数据</a>
+</li>
+<li><a  href='/easyquery.htm?cn=E0102' >分省季度数据</a>
+</li>
+<li><a  href='/easyquery.htm?cn=E0103' >分省年度数据</a>
+</li>
+<li><a  href='/easyquery.htm?cn=E0104' >主要城市月度价格</a>
+</li>
+<li><a  href='/easyquery.htm?cn=E0105' >主要城市年度数据</a>
+</li>
+<li><a  href='/easyquery.htm?cn=E0109' >港澳台月度数据</a>
+</li>
+<li><a  href='/easyquery.htm?cn=E0110' >港澳台年度数据</a>
+</li>
+</ul>
+<ul class='hidden' id='menuG01'><li><a  href='/easyquery.htm?cn=G0101' >主要国家(地区)月度数据</a>
+</li>
+<li><a  href='/easyquery.htm?cn=G0102' >三大经济体月度数据</a>
+</li>
+<li><a  href='/easyquery.htm?cn=G0103' >国际市场月度商品价格</a>
+</li>
+<li><a  href='/easyquery.htm?cn=G0104' >主要国家(地区)年度数据</a>
+</li>
+<li><a  href='/gwwz.htm' >国际组织网站</a>
+</li>
+<li><a  href='/gjwz.htm' >各国统计网站</a>
+</li>
+</ul>
+
+	<!-- nav end-->
+	
+    <div class="top-search">
+    	<span class="search-img-title"><a href="/search.htm"><img style="" src="/images/shuku.jpg"/></a></span>
+        <input type="text"  value="如：2012年 北京 GDP" maxlength="60" class="search-text"  id="keyword"/>
+       <input type="button" value="搜索" class="search-btn" onclick="search()"/>
+       <span class="img"></span>
+    </div>
+    
+    <div class="keyword">
+		<ul class="hot-index-container">
+			
+			<li><a href="/search.htm?s=GDP">GDP</a></li>
+			
+			<li><a href="/search.htm?s=CPI">CPI</a></li>
+			
+			<li><a href="/search.htm?s=总人口">总人口</a></li>
+			
+			<li><a href="/search.htm?s=社会消费品零售总额">社会消费品零售总额</a></li>
+			
+			<li><a href="/search.htm?s=粮食产量">粮食产量</a></li>
+			
+			<li><a href="/search.htm?s=PMI">PMI</a></li>
+			
+			<li><a href="/search.htm?s=PPI">PPI</a></li>
+			
+			<li><a href="/search.htm?s=城镇居民人均可支配收入">城镇居民人均可支配收入</a></li>
+			
+			<li><a href="/search.htm?s=农村居民家庭人均纯收入">农村居民家庭人均纯收入</a></li>
+			
+			<li><a href="/search.htm?s=城镇居民人均现金消费支出">城镇居民人均现金消费支出</a></li>
+			
+			<li><a href="/search.htm?s=人口">人口</a></li>
+			
+			<li><a href="/search.htm?s=gdp">gdp</a></li>
+			
+			<li><a href="/search.htm?s=房地产">房地产</a></li>
+			
+			<li><a href="/search.htm?s=房价">房价</a></li>
+			
+			<li><a href="/search.htm?s=国内生产总值">国内生产总值</a></li>
+			
+			<li><a href="/search.htm?s=工业增加值">工业增加值</a></li>
+			
+			<li><a href="/search.htm?s=cpi">cpi</a></li>
+			
+			<li><a href="/search.htm?s=ppi">ppi</a></li>
+			
+			<li><a href="/search.htm?s=生产总值">生产总值</a></li>
+			
+		</ul>
+	</div>
+	
+</div>
+<script type="text/javascript">
+	autoExperience();
+	function autoExperience(){
+		var _l = Math.ceil( $("#header").offset().left );
+		$(".experience").css({left:_l});
+	}
+	if($.cookie("experience") != "show"){
+		$(".experience").show();
+	}
+	
+	function search() {
+		var str = $("#keyword").val();
+		if ($.trim(str) != "" && str != "如：2012年 北京 GDP") {
+			window.location = "/search.htm?s=" + str;
+		}else{
+			window.location = "/search.htm";
+		}
+	}
+	$("#keyword").focus(function(){
+		$(this).val() == "如：2012年 北京 GDP" && $(this).val("");
+	}).blur(function(){
+		$.trim($("#keyword").val()) == "" && $(this).val("如：2012年 北京 GDP");
+	}).keydown(function(e){
+		e.keyCode == 13 && search();
+	});
+</script>
+
+<script type="text/javascript">
+$(function() {
+	/*导航菜单*/
+	menu("nav", "navbar");
+	autoExperience();
+	$(window).resize(function(){
+		autoExperience();
+	});
+	$(".experience .close").click(function(){
+		$(this).parent().hide();
+		$.cookie("experience","show");
+	});
+
+	$(document).on('click', '.ierr', function(event){
+        event.preventDefault();
+        var curURL = encodeURIComponent(window.location.href);
+        var resultURL = $(this).prop('href');
+        window.open(resultURL + '&url=' + curURL);
+	});
+});
+</script>
+
+<!--主体-->
+<div id="content">
+	<div class="main_top">
+		<div class="main_topL">
+			<div id="pps" class="ppsImg"></div>
+			<div class="more"> <a href="/focus.htm" target="_self">更多>></a> </div>
+		</div>
+		<div class="main_topR">
+			<div class="extra">
+	            <div class="title">第三次全国农业普查</div>
+	            <div style="margin:6px 0;" class="extraContent"><a href="/ifnormal.htm?u=/images/snp/index.html&h=557"><img src="/images/snp.png" alt="第三次全国农业普查"></a></div>
+	            
+	            
+	            <div class="extraContent2">
+	            
+	                <div class="extraContentL">
+	                    <div style="width:110px;" class="title left">统计数据产品</div>
+	                    <div class="box">
+	                        <div><a target="_blank" href="/swf.htm?m=turnto&id=422">图表中国</a></div>
+	                        <div>数据中国[<a class="sjzgcn" href="javascript:;">中</a> <a class="sjzgen" href="javascript:;">英</a>]</div>
+	                        <div><a class="getDataVideo" href="javascript:;">如何获取统计数据</a></div>
+	                    </div>
+	                </div>
+	                
+	                <div class="extraContentR">
+	                    <div style="width:110px;margin-bottom:8px;" class="title left"><a target="_blank" href="/files/html/report_2018.pdf">工作年度报表</a></div>
+	                    <a target="_blank" href="/mapdata.htm?cn=E0102"><img width="118" height="64" src="/images/datamap.jpg"></a>
+	                   </div>
+	                <div class="extraContentB">官方微博(<a target="_blank" href="http://t.people.com.cn/zgjjpc">人民</a> <a target="_blank" href="http://t.home.news.cn/sanjingpu">新华</a> <a target="_blank" href="http://weibo.com/u/3919628624">新浪</a> <a target="_blank" href="http://e.t.qq.com/zgjjpc?pgv_ref=im.WBlog.profile.t&amp;ptlang=2052">腾讯</a>) <a target="_blank" href="http://www.stats.gov.cn/tjfw/tjyd/">官方微信</a></div>
+	                
+	            </div>
+	        </div>
+	    </div>
+		<div class="clear"></div>
+	</div>
+	<div class="sanjingpuflash" style="height:130px;"><img src="/images/nongpuguangg1.gif" style="width:955px" /></div>
+	
+	<div class="main_middle">
+		<!-- tab start-->
+		<div id=con>
+			<div class="tittle">快速查询（专题统计报表）</div>
+			<ul id="tags">
+				<li class="selectTag"><a href="javascript:void(0)"> 月度 </a></li>
+				<li><a href="javascript:void(0)"> 季度 </a></li>
+				<li><a href="javascript:void(0)"> 年度 </a></li>
+			</ul>
+			<div id=tagContent>
+				<div class="tagContent selectTag" id="tagContent0">
+					<div class="tagContentL">
+						<ul>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AA020B">
+									工业增加值增速 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AA020C">
+									主要工业产品产量 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AA020E">
+									各地区工业增加值增长速度 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AA020F">
+									分行业主要工业企业经济指标 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AA130G">
+									固定资产投资（不含农户） </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AA130J">
+									各地区固定资产投资（不含农户） </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AA130I">
+									各行业固定资产投资（不含农户） </a></li>
+						</ul>
+					</div>
+					<div class="tagContentR">
+						<div class="textLeft">
+							<ul>
+							  <li><a target="_top"
+									href="/tablequery.htm?code=AA0701">
+										能源产品产量 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AA130O">
+										房地产开发投资 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AA130Q">
+										各地区商品房销售面积 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AA1510">
+										社会消费品零售总额 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AA1511">
+										限额以上企业商品零售类值表 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AA0108">
+										居民消费价格分类指数 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AA0105">
+										商品零售价格分类指数 </a></li>
+							</ul>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="tagContent" id="tagContent1">
+					<div class="tagContentL">
+						<ul>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AB0304">
+									国内生产总值 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AB0307">
+									各地区国内生产总值 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AB0306">
+									国内生产总值增长速度 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AB0308">
+									各地区国内生产总值增长速度 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AB0101">
+									城镇登记失业率 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AB0202">
+									各地区农产品价格指数 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AB0203">
+									各地区固定资产投资价格指数 </a></li>
+						</ul>
+					</div>
+					<div class="tagContentR">
+						<div class="textLeft">
+							<ul>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB0409">
+										农业总产值 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB050A">
+										主要工业产品的生产、销售与库存 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB060C ">
+										各地区建筑业总产值 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB060C">
+										各地区建筑业竣工产值 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB060D">
+										各地区建筑业企业签订合同情况 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB060F员">
+										各地区建筑业企业从业人员 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB060F">
+										各地区建筑业企业劳动生产率 </a></li>
+							</ul>
+						</div>
+						<!--<div class="textRight">
+							<ul>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB0G&currentName=各地区建筑业企业房屋竣工面积">
+										各地区建筑业企业房屋竣工面积 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB0H&currentName=各地区建筑业企业房屋竣工价值 ">
+										各地区建筑业企业房屋竣工价值 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB0P&currentName=各地区建筑业企业总收入">
+										各地区建筑业企业总收入 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB0Q&currentName=各地区建筑业企业利润 ">
+										各地区建筑业企业利润 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB0R&currentName=各地区建筑业企业费用 ">
+										各地区建筑业企业费用 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB0V&currentName=各地区建筑业企业资产负债情况 ">
+										各地区建筑业企业资产负债情况 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AB0X&currentName=国际比较 ">
+										国际比较 </a></li>
+							</ul>
+						</div>-->
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="tagContent" id="tagContent2">
+					<div class="tagContentL">
+						<ul>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AD01 ">
+									各地区行政区划 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AD02">
+									国民经济核算指标 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AD03">
+									人口基本情况 </a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AD04">
+									固定资产投资概况 </a></li>						
+							<li><a target="_top"
+								href="/tablequery.htm?code=AD05">
+									社会消费品零售总额 </a></li>							
+							<li><a target="_top"
+								href="/tablequery.htm?code=AD06">
+									对外贸易和利用外资</a></li>
+							<li><a target="_top"
+								href="/tablequery.htm?code=AD07">
+									国家财政收支 </a></li>
+						</ul>
+					</div>
+					<div class="tagContentR">
+						<div class="textLeft">
+							<ul>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AD09">
+										居民消费价格指数 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AD0C">
+										工业生产者出厂价格指数 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AD0E">
+										居民人均可支配收入 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AD0F">
+										农业基本情况 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AD0G">
+										工业增加值</a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AD0H">
+										能源生产总量和构成</a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AD0J">
+										建筑业企业概况</a></li>
+							</ul>
+						</div>
+						<!-- <div class="textRight">
+							<ul>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AC0L&currentName=交通运输业">
+										交通运输业 </a> 、 <a target="_top"
+									href="/tablequery.htm?code=AC0M&currentName=邮电业务基本情况">
+										邮电业务基本情况 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AC0N&currentName=各级各类学校、教职工、学生 ">
+										各级各类学校、教职工、学生 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AC0P&currentName=科技事业发展情况">
+										科技事业发展情况 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AC0Q&currentName=卫生、文化和体育基本情况">
+										卫生、文化和体育基本情况 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AC0R&currentName=社会服务">
+										社会服务 </a> 和 <a target="_top"
+									href="/tablequery.htm?code=AC0S&currentName=环境保护">
+										环境保护 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AC0T&currentName=港、">
+										港、 </a> <a target="_top"
+									href="/tablequery.htm?code=AC0U&currentName=澳特别行政区主要社会经济指标">
+										澳特别行政区主要社会经济指标 </a></li>
+								<li><a target="_top"
+									href="/tablequery.htm?code=AC0V&currentName=台湾省主要社会经济指标">
+										台湾省主要社会经济指标 </a></li>
+							</ul>
+						</div> -->
+						<div class="clear"></div>
+					</div>
+				</div>
+
+				<div class="quickmessage clearfix">
+					<div class="quickmessageL">
+						<a
+							href="http://www.stats.gov.cn/tjsj/zxfb/201902/t20190228_1651265.html"
+							target="_blank"> 2018年统计公报 </a>
+					</div>
+					<div class="quickmessageR">
+						<div class="textLeft">
+							<a href="http://www.stats.gov.cn/tjzs/" target="_blank">
+								热点问题解读 </a>
+						</div>
+						<!-- <div class="textRight">
+							<a href="http://www.stats.gov.cn/tjsj/zbjs/" target="_blank">
+								统计指标解释 </a>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- tab end-->
+		
+		<!--三经普数据-->
+		<div class="timefind left ml10">
+			<h2 class="f14 pl10 YaHei title">2008年时间利用调查</h2>
+			<ul>
+				<li><a target="_top"
+					href="/ifnormal.htm?u=/images/timefind/index.html&h=1070"><img class="vm pl10 pr10" width="50" src="/images/timefind/1.png" />调查方案 </a></li>
+				<li><a target="_top"
+					href="/ifnormal.htm?u=/images/timefind/index.html&h=1070"><img class="vm pl10 pr10" width="50" src="/images/timefind/2.png" />被调查人员基本情况 </a></li>
+				<li><a target="_top"
+					href="/ifnormal.htm?u=/images/timefind/index.html&h=1070"><img class="vm pl10 pr10" width="50" src="/images/timefind/3.png" />休息日日志表 </a></li>
+				<li><a target="_top"
+					href="/ifnormal.htm?u=/images/timefind/index.html&h=1070"><img class="vm pl10 pr10" width="50" src="/images/timefind/4.png" />工作日日志表</a></li>
+			</ul>
+			<div class="churu"><a href="/ifnormal.htm?u=/files/html/quickSearch/trcc/trcc01.html&h=740">投入产出表</a></div>
+		</div>
+		
+		<div class="main_middleR">
+			<div class="title">
+				<a target="_blank" href="http://www.stats.gov.cn/tjsj/xxgbrc/201812/t20181224_1640994.html">
+					发布日程
+				</a>
+			</div>
+			<!--发布日程调用-->
+			<div id="calendar" class="calendar"></div>
+		</div>
+		<div class="clear"></div>
+	</div>	
+	
+	<div class="main_bottom">
+		<div class="main_bottomM">
+			<div class="title">可视化图表</div>
+			<div class="visual_charts">
+				<div class="textL t2">可视化统计图秉持方便易用的理念展示统计数字，通过简单的图像或动态界面及互动式统计图，您可更清楚了解一些统计指标。</div>
+				<div class="pClock" onclick="pClock(this)">
+					<div id="rollBox"></div>
+				</div>
+				<div class="clear"></div>
+				<div class="chartBox"></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="main_bottomR">
+			<div class="title">数据更新</div>
+			<div class="updateList"><ul></ul></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+</div>
+
+
+
+
+
+
+<!-- 在线留言开始 -->
+<script type="text/javascript" src="/js/tips/js/tipsBox.js"></script>
+<script src="/js/message/messagePop.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var basePath="";
+	//提交留言
+	function addMsg(){
+		var username = $.trim($("#usrname").val());
+		var phone = $.trim($("#phone").val());
+		var email = $.trim($("#email").val());
+		var subject = $.trim($("#subject").val());
+		var content = $.trim($("#detail").val());
+		if(username == ""){
+			alert("姓名不能为空！");
+		} else if(username.length > 100){
+			alert("姓名不能超过100个字符！");
+		} else if(phone ==""){
+			alert("电话号码不能为空！");
+		} else if(phone!="" && !(/^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$|(^(13[0-9]|15[0|3|6|7|8|9]|18[8|9])\d{8}$)/.test(phone))){
+			alert("请输入正确的电话号码!\n如：0591-6487256,1581064****");
+		} else if(email == ""){
+			alert("电子邮件不能为空！");
+		} else if(email.length > 100){
+			alert("电子邮件不能超过100个字符！");
+		} else if(!(/^([0-9a-zA-Z-_]){4,}@([0-9a-zA-Z])+((\.)[0-9a-zA-Z]+){1,2}$/.test(email))){
+			alert("电子邮件格式不正确！邮箱@符号之前最少4个字符。");
+		} else if(subject.length > 100){
+			alert("留言主题不能超过100个字符！");
+		} else if(content == ""){
+			alert("留言内容不能为空！");
+		} else if(content.length > 500){
+			alert("留言内容不能超过500个字符！");
+		} else{
+			$.ajax({
+		        url :basePath+"/msg.htm",
+		        type : 'POST',
+		        data : {
+		        	m : "addMsg",
+		        	username : username,
+		        	phone : phone,
+		        	email : email,
+		        	subject : subject,
+		        	content : content
+		        },
+		        success : function(data){
+		            if(data){
+		            	alert("留言成功！");
+		            	$(".closeBtn").trigger("click");
+		            }else{
+		            	alert("操作失败！");
+		            }
+		        }
+		    });
+		}
+	}
+	
+	//取消留言
+	function cancelMsg(){
+		$(".closeBtn").trigger("click");
+	}
+
+    //弹出留言板
+	function showMessagePop(){
+      	//弹出收藏夹
+      	$.tips({
+			title : '在线留言',			
+			content : messageDiv,		
+			width : 650,				
+			height : 400,
+			drag : true,			
+			isCopy : false			
+		});	
+      	
+      	//同步请求用户session数据
+    	$.ajaxSettings.async = false;
+      	$.getJSON(basePath+"/msg.htm", function(json){
+      		if(json!=null){
+      			$("#email").val(json.name);
+          		$("#phone").val(json.phone);
+      		}
+ 		});
+	};
+</script>
+<!-- 在线留言结束 -->
+
+
+<!--footer-->
+<div id="footer" class="clearfix">
+	<div class="cpr">
+		<ul>
+			<li class="tittle">统计法规</li>
+			<li><img src="images/footLine.jpg" border="0" /></li>
+			<li><a
+				href="http://www.stats.gov.cn/zjtj/tjfg/tjfl/200906/t20090629_8791.html"
+				target="_blank">《统计法》</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/statsinfo/auto2072/201708/t20170803_1519739.html"
+				target="_blank">统计法实施条例</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/zjtj/tjfg/xzfg/201005/t20100528_36036.html"
+				target="_blank">人口普查条例</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/zjtj/tjfg/xzfg/201808/t20180824_1618906.html"
+				target="_blank">经济普查条例</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/zjtj/tjfg/gz/200904/t20090428_8810.html"
+				target="_blank">统计违法违纪行为处分规定</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/statsinfo/auto2072/201708/t20170803_1519666.html"
+				target="_blank">统计调查证管理办法</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/zjtj/tjfg/gz/200410/t20041018_8797.html"
+				target="_blank">涉外调查管理办法</a></li>
+		</ul>
+	</div>
+	<div class="cpr">
+		<ul>
+			<li class="tittle">标准制度</li>
+			<li><img src="images/footLine.jpg" border="0" /></li>
+			<li><a href="http://www.stats.gov.cn/tjsj/tjbz/201301/t20130114_8675.html" target="_blank">国民经济行业分类</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/tjsj/tjzd/gjtjzd/201701/t20170109_1451479.html"
+				target="_blank">国民经济核算统计报表制度</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/tjsj/tjzd/gjtjzd/201701/t20170109_1451478.html"
+				target="_blank">基本单位统计报表制度</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/tjsj/tjzd/gjtjzd/201701/t20170109_1451476.html"
+				target="_blank">农林牧渔业统计调查制度</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/tjsj/tjzd/gjtjzd/201701/t20170109_1451473.html"
+				target="_blank">工业统计报表制度</a></li>
+			<li><a
+				href="http://www.stats.gov.cn/tjsj/tjzd/gjtjzd/201701/t20170109_1451375.html"
+				target="_blank">价格统计报表制度</a></li>
+			<li><a 
+				href="http://www.stats.gov.cn/tjsj/tjzd/gjtjzd/index_1.html" 
+				target="_blank">更多制度&gt;&gt;</a></li>
+		</ul>
+	</div>
+	<div class="cpr">
+		<ul>
+			<li class="tittle">统计数据生产过程</li>
+			<li><img src="images/footLine.jpg" border="0" /></li>
+			<li><a href="http://www.stats.gov.cn/tjzs/spdb/tjxcycb/201009/t20100920_57067.html" target="_blank">国内生产总值（GDP）</a></li>
+			<li><a href="http://www.stats.gov.cn/tjzs/spdb/tjxcycb/201009/t20100920_57066.html" target="_blank">居民消费者价格指数（CPI）</a></li>
+			<li><a href="http://www.stats.gov.cn/tjzs/spdb/tjxcycb/201109/t20110914_57080.html" target="_blank">生产者价格指数（PPI）</a></li>
+			<li><a href="http://www.stats.gov.cn/tjzs/spdb/tjxcycb/201209/t20120919_57095.html" target="_blank">工业生产增长速度</a></li>
+			<li><a href="http://www.stats.gov.cn/tjzs/spdb/tjxcycb/201209/t20120919_57096.html" target="_blank">固定资产投资</a></li>
+			<li><a href="http://www.stats.gov.cn/tjzs/spdb/tjxcycb/201209/t20120919_57097.html" target="_blank">社会消费品零售总额</a></li>
+			<li><a href="http://www.stats.gov.cn/tjzs/spdb/tjxcycb/201109/t20110914_57081.html" target="_blank">粮食产量</a></li>
+			<li><a href="http://www.stats.gov.cn/tjzs/spdb/tjxcycb/201109/t20110915_57082.html" target="_blank">城乡居民收入与支出</a></li>
+		</ul>
+	</div>
+	<div class="cpr02">
+		<ul>
+			<li class="tittle">在线电话</li>
+			<li>咨询电话：010-68576320</li>
+			<li class="tittle"></li>
+			<li>周一至周五上午8：00-11:30,下午1:00-5:00</li>
+		</ul>
+	</div>
+</div>
+<div class="about">
+	<table>
+		<tbody>
+			<tr>
+				<td width="110" rowspan="4"><a href="http://bszs.conac.cn/sitename?method=show&id=0D0B77DBD5666A3EE053012819ACD529" target="_blank"><img src="/images/gov.png" alt="党政机关"></a></td>
+				<td>版权所有：中华人民共和国国家统计局</td>
+				<td width="160" rowspan="4"><a class="ierr" href="http://121.43.68.40/exposure/jiucuo.html?site_code=bm36000002" target="_blank"><img src="/images/err.png" alt="党政机关"></a></td>
+			</tr>
+			<tr>
+				<td>地址：北京市西城区月坛南街57号（100826）</td>
+			</tr>
+			<tr>
+				<td>网站标识码 bm36000005</td>
+			</tr>
+			<tr>
+				<td>京ICP备05034670号</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- <div style="position:fixed;left: 50%;top: 285px;width: 100px;height: 400px;margin-left: 498px;">
+    <img src="/images/erweima.gif" width=160px />
+</div>-->
+
+</body>
+</html>
